@@ -245,8 +245,30 @@
           </div>
         </div>
 
+        <!-- RISK MATRIX LEAD MAGNET OPT-IN CARD -->
+        <div class="glass-card rounded-2xl p-6 border border-emerald-500/30 bg-gradient-to-r from-emerald-950/20 via-[#0e141f] to-transparent">
+          <div class="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-xs text-emerald-400 font-semibold w-fit mb-3 font-mono">
+            🛡️ Free Trader Cheat Sheet
+          </div>
+          <h3 class="text-base font-bold text-white mb-1">Download The Funded Trader Risk & Drawdown Matrix</h3>
+          <p class="text-xs text-gray-400 mb-4 max-w-xl">
+            Get our firm-by-firm drawdown comparison (FTMO, Apex, Topstep) + safe buffer lot sizing formula sent to your inbox.
+          </p>
+
+          <form onsubmit="handlePropAuditLeadSubmit(event)" id="propaudit-lead-form" class="flex flex-col sm:flex-row gap-2 max-w-xl">
+            <input type="email" id="propaudit-email" required placeholder="trader@gmail.com" class="flex-1 px-4 py-2.5 bg-[#080b11] border border-white/10 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-emerald-400">
+            <button type="submit" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-xs transition cursor-pointer shadow-lg shadow-emerald-500/20 whitespace-nowrap">
+              Send Matrix PDF 📥
+            </button>
+          </form>
+          <div id="propaudit-success-msg" class="hidden mt-3 p-3 bg-emerald-500/20 border border-emerald-500/40 rounded-xl text-xs text-emerald-300">
+            ✅ Matrix sent! Check your inbox or review the rules table below.
+          </div>
+        </div>
+
         <!-- CHEAT SHEET TABLE -->
         <div class="glass-card rounded-2xl p-6 border border-white/10" id="rules">
+
           <h3 class="text-sm font-bold text-white mb-4">Prop Firm Rule Comparison Matrix</h3>
           <div class="overflow-x-auto text-xs">
             <table class="w-full text-left">
@@ -482,7 +504,24 @@
       });
     }
 
+    function handlePropAuditLeadSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('propaudit-email').value;
+      localStorage.setItem('propaudit_lead', JSON.stringify({ email, time: new Date().toISOString() }));
+      try {
+        fetch('https://formsubmit.co/ajax/ceopatinhalo@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email, product: 'PropAudit.io Funded Trader Risk Matrix' })
+        }).catch(() => {});
+      } catch(err) {}
+
+      document.getElementById('propaudit-lead-form').classList.add('hidden');
+      document.getElementById('propaudit-success-msg').classList.remove('hidden');
+    }
+
     init();
   </script>
 </body>
 </html>
+
