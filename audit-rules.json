@@ -1,0 +1,94 @@
+{
+  "firms": [
+    {
+      "id": "ftmo",
+      "name": "FTMO",
+      "model": "Balance / Equity Midnight Reset",
+      "dailyMaxPercent": 5.0,
+      "overallMaxPercent": 10.0,
+      "trailingType": "static_from_start_balance",
+      "consistencyRulePercent": 0,
+      "accountSizes": [10000, 25000, 50000, 100000, 200000],
+      "defaultSize": 100000,
+      "notes": "Daily loss is calculated from the higher of midnight balance or equity. Breached if equity drops below 95% of day's start balance."
+    },
+    {
+      "id": "fundednext",
+      "name": "FundedNext (Stellar)",
+      "model": "Balance Based (Daily) & 10% Overall",
+      "dailyMaxPercent": 5.0,
+      "overallMaxPercent": 10.0,
+      "trailingType": "balance_based",
+      "consistencyRulePercent": 30.0,
+      "accountSizes": [6000, 15000, 25000, 50000, 100000, 200000],
+      "defaultSize": 100000,
+      "notes": "Daily loss is based strictly on previous day's closing balance. Express model enforces a 30% maximum consistency threshold."
+    },
+    {
+      "id": "apex",
+      "name": "Apex Trader Funding",
+      "model": "Intra-trade Live Trailing Drawdown",
+      "dailyMaxPercent": 0,
+      "overallMaxPercent": 0,
+      "trailingType": "live_unrealized_peak",
+      "trailingAmounts": {
+        "25000": 1500,
+        "50000": 2500,
+        "100000": 3000,
+        "150000": 5000,
+        "250000": 6500,
+        "300000": 7500
+      },
+      "consistencyRulePercent": 30.0,
+      "accountSizes": [25000, 50000, 100000, 150000, 250000, 300000],
+      "defaultSize": 50000,
+      "notes": "Trailing threshold follows highest unrealized profit during active trades until peak balance reaches starting balance + $100."
+    },
+    {
+      "id": "topstep",
+      "name": "Topstep",
+      "model": "End of Day (EOD) Maximum Loss Limit",
+      "dailyMaxPercent": 0,
+      "overallMaxPercent": 0,
+      "trailingType": "eod_balance_trailing",
+      "trailingAmounts": {
+        "50000": 2000,
+        "100000": 3000,
+        "150000": 4500
+      },
+      "dailyLossAmounts": {
+        "50000": 1000,
+        "100000": 2000,
+        "150000": 3000
+      },
+      "consistencyRulePercent": 50.0,
+      "accountSizes": [50000, 100000, 150000],
+      "defaultSize": 50000,
+      "notes": "Trailing drawdown locks in at 5:00 PM CT daily based on closed balance, never trails on unrealized intra-day profit."
+    },
+    {
+      "id": "the5ers",
+      "name": "The5ers (High Stakes)",
+      "model": "5% Daily Loss & 10% Static Max Loss",
+      "dailyMaxPercent": 5.0,
+      "overallMaxPercent": 10.0,
+      "trailingType": "static_from_start_balance",
+      "consistencyRulePercent": 0,
+      "accountSizes": [5000, 20000, 60000, 100000],
+      "defaultSize": 100000,
+      "notes": "5% daily loss based on day's starting equity/balance. Max drawdown is fixed 10% from original account capital."
+    },
+    {
+      "id": "fundingpips",
+      "name": "Funding Pips",
+      "model": "Balance-based 5% Daily & 10% Max Drawdown",
+      "dailyMaxPercent": 5.0,
+      "overallMaxPercent": 10.0,
+      "trailingType": "balance_based",
+      "consistencyRulePercent": 0,
+      "accountSizes": [5000, 10000, 25000, 50000, 100000],
+      "defaultSize": 100000,
+      "notes": "Daily drawdown calculates from 00:00 server balance. Safe and clear scaling plan up to $2M."
+    }
+  ]
+}

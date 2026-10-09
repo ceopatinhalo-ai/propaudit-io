@@ -1,0 +1,17 @@
+# PropAudit.io
+> Real-time prop firm trailing drawdown calculator, consistency rule auditor, and risk buffer engine for funded traders.
+
+## What is PropAudit.io?
+PropAudit.io provides quantitative risk management tools tailored to retail funded traders trading prop firms such as FTMO, FundedNext, Apex Trader Funding, Topstep, The5ers, and Funding Pips.
+
+## Core Features
+- Live Trailing Drawdown Simulator: Computes exact liquidation price and buffer based on intra-trade peak equity or midnight reset balance.
+- Maximum Safe Lot Sizing: Calculates position size so traders never risk more than their remaining drawdown buffer.
+- 30% Consistency Rule Auditor: Evaluates daily P&L distribution to predict and prevent prop firm payout rejections.
+- Firm Specifications Database: Continuously updated rules for 6 major prop firms.
+
+## Pro Trader License
+- One-time payment of $29 USD via PayPal.
+- Includes MT4/MT5 CSV import, multi-firm trailing tracking, and payout eligibility audits.
+- Publisher: TEMA AI Technologies (https://tema.vn).
+- Contact: ceopatinhalo@gmail.com
